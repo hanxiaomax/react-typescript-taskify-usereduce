@@ -1,29 +1,23 @@
 import React from "react";
 import { Todo } from "../model";
-import SingleTodo from "./SingleTodo";
 import SingleTodoWithUseReduce from "./SingleTodoWithUseReduce";
+import { Action } from "./TodoReducer";
 
 interface Props {
   todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  dispatch: React.Dispatch<Action>;
 }
 
-const TodoList = ({ todos, setTodos }: Props) => {
+const TodoList = ({ todos, dispatch }: Props) => {
   return (
     <div className="flex flex-wrap justify-center">
       {todos.map((t) => (
-        <SingleTodo
+        <SingleTodoWithUseReduce
           todo={t}
           key={t.id}
           todos={todos}
-          setTodos={setTodos}
-        ></SingleTodo>
-        // <SingleTodoWithUseReduce
-        //   todo={t}
-        //   key={t.id}
-        //   todos={todos}
-        //   setTodos={setTodos}
-        // ></SingleTodoWithUseReduce>
+          dispatch={dispatch}
+        ></SingleTodoWithUseReduce>
       ))}
     </div>
   );
